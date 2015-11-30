@@ -14,9 +14,9 @@ public class DBManager {
 	Connection conection;
 	
 	//Parametros de conexion
-	final String cadenaConexion="jdbc:mysql://localhost/bd_sistemacompleto";
+	final String cadenaConexion="jdbc:mysql://localhost/base_sistemafinal";
 	//final String User="root";
-	final String password="";
+	final String password="upse";
 	//final String cadenaConexion="jdbc:mysql://node105341-jamsout2.j.layershift.co.uk/jamsout";
 	final String User="root";
 	//final String password="SAEzmi71102";
@@ -47,7 +47,5 @@ public class DBManager {
 		
 		return this.conection;
 	}
-	
-	
-	
+				
 }

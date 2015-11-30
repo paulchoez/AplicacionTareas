@@ -1,6 +1,7 @@
 package com.servicio.modelo;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -43,7 +44,104 @@ public class DBUsuario {
 			e.printStackTrace();
 			return "error de datos";
 		}
-		
 	}
+
+	public Integer nuevoUsuario(String nombres, Integer id_departamento, String apellidos, String cedula, String email, String direccion, Integer id_tipousuario, String alias, String dpassword){
+		Integer resultado=0;
+		
+		DBManager dbmanager = new DBManager();
+		Connection con = dbmanager.getConection();
+		if (!validarIngresousuario(alias))
+		{
+		//Manejo de transaccion
+		try {
+			con.setAutoCommit(false);
+			String sql = null;
+			String encrypassword = dpassword;
+			sql="CALL sp_ingresar_usuarios (?,?,?,?,?,?,?,?,?)";
+			PreparedStatement pstm = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			
+			pstm.setString(1, nombres);
+			pstm.setInt(2, id_departamento);
+			pstm.setString(3, apellidos);
+			pstm.setString(4, cedula);
+			pstm.setString(5, email);
+			pstm.setString(6, direccion);
+			pstm.setInt(7, id_tipousuario);
+			pstm.setString(8, alias);
+			pstm.setString(9, encrypassword);
+		
+			
+			//retorna el numero de filas afectadas
+			int num = pstm.executeUpdate();
+			//si hasta aqui todo ha ido bien commit a la transaccion
+			if(num>0){
+			con.commit();
+			resultado = 1;
+			
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			resultado=0;
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		}else{
+			resultado=2;
+			
+		}
+		return resultado;
+	}
+
+	public Boolean validarIngresousuario(String usuario){
+        //busqueda de existencia de usuario 
+        //conectarse a la red
+       boolean existe = false;
+        DBManager dbmanager = new DBManager();
+        Connection con =dbmanager.getConection();
+        if(con==null){
+            System.out.println("error en conexion");
+            return existe;
+        }
+         
+        //sentencia a ejecutar
+        Statement sentencia;
+        //objeto para almacenar resultados
+        ResultSet resultados;
+        String sql = null;
+     
+        sql ="select * from datosusuarios as du where du.usuario= '"+usuario+"'"; 
+       
+        try{
+        sentencia =con.createStatement();
+        resultados=sentencia.executeQuery(sql);
+        
+        while(resultados.next()){
+           existe=true;
+        }
+        
+            
+          }catch (SQLException e){
+             
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+         
+        try{
+        con.close();
+        }catch (SQLException e){
+             
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return existe;
+    }
 
 }
