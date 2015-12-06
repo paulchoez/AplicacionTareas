@@ -1,5 +1,6 @@
 package com.servicio.servicio;
 
+import com.servicio.modelo.DBDepartamento;
 import com.servicio.modelo.DBUsuario;
 
 public class funciones_servicio {
@@ -7,6 +8,16 @@ public class funciones_servicio {
 	public String login(String usuario, String contrasena){
 		DBUsuario dbusuario = new DBUsuario();
 		return dbusuario.login(usuario, contrasena);
+	}
+	
+	public int id_tipo_usuario(String usuario, String contrasena){
+		DBUsuario dbusuario = new DBUsuario();
+		return dbusuario.id_tipo_usuario(usuario, contrasena);
+	}
+	
+	public int id_departamento(String departamento){
+		DBDepartamento dbdepartamento = new DBDepartamento();
+		return dbdepartamento.id_departamento(departamento);
 	}
 
 	public String registrousuario(String nombres,Integer id_departamento, String apellidos, String cedula, String email, String direccion, 
@@ -30,6 +41,10 @@ public class funciones_servicio {
 		return resultado;
 	}
 	
+	public int validar_cedula(String cedula){
+		DBUsuario dbusuario = new DBUsuario();
+		return dbusuario.validar_cedula(cedula);
+	}
 	
 	public boolean usuario(String usuario){
 		DBUsuario dbusuario = new DBUsuario();

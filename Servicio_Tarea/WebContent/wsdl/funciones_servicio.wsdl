@@ -19,12 +19,147 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="usuario">
+    <complexType>
+     <sequence>
+      <element name="usuario" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="usuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="usuarioReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="id_tipo_usuario">
+    <complexType>
+     <sequence>
+      <element name="usuario" type="xsd:string"/>
+      <element name="contrasena" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="id_tipo_usuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="id_tipo_usuarioReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="id_departamento">
+    <complexType>
+     <sequence>
+      <element name="departamento" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="id_departamentoResponse">
+    <complexType>
+     <sequence>
+      <element name="id_departamentoReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validar_cedula">
+    <complexType>
+     <sequence>
+      <element name="cedula" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validar_cedulaResponse">
+    <complexType>
+     <sequence>
+      <element name="validar_cedulaReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrousuario">
+    <complexType>
+     <sequence>
+      <element name="nombres" type="xsd:string"/>
+      <element name="id_departamento" type="xsd:int"/>
+      <element name="apellidos" type="xsd:string"/>
+      <element name="cedula" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+      <element name="direccion" type="xsd:string"/>
+      <element name="id_tipousuario" type="xsd:int"/>
+      <element name="usuarios" type="xsd:string"/>
+      <element name="contraseña" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrousuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="registrousuarioReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
  </wsdl:types>
 
-   <wsdl:message name="loginRequest">
+   <wsdl:message name="id_tipo_usuarioRequest">
 
-      <wsdl:part element="impl:login" name="parameters">
+      <wsdl:part element="impl:id_tipo_usuario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="validar_cedulaRequest">
+
+      <wsdl:part element="impl:validar_cedula" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrousuarioRequest">
+
+      <wsdl:part element="impl:registrousuario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="id_departamentoRequest">
+
+      <wsdl:part element="impl:id_departamento" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="id_tipo_usuarioResponse">
+
+      <wsdl:part element="impl:id_tipo_usuarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="usuarioRequest">
+
+      <wsdl:part element="impl:usuario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="usuarioResponse">
+
+      <wsdl:part element="impl:usuarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrousuarioResponse">
+
+      <wsdl:part element="impl:registrousuarioResponse" name="parameters">
 
       </wsdl:part>
 
@@ -33,6 +168,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="loginResponse">
 
       <wsdl:part element="impl:loginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="validar_cedulaResponse">
+
+      <wsdl:part element="impl:validar_cedulaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="id_departamentoResponse">
+
+      <wsdl:part element="impl:id_departamentoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginRequest">
+
+      <wsdl:part element="impl:login" name="parameters">
 
       </wsdl:part>
 
@@ -47,6 +206,66 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:loginResponse" name="loginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="usuario">
+
+         <wsdl:input message="impl:usuarioRequest" name="usuarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:usuarioResponse" name="usuarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="id_tipo_usuario">
+
+         <wsdl:input message="impl:id_tipo_usuarioRequest" name="id_tipo_usuarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:id_tipo_usuarioResponse" name="id_tipo_usuarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="id_departamento">
+
+         <wsdl:input message="impl:id_departamentoRequest" name="id_departamentoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:id_departamentoResponse" name="id_departamentoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validar_cedula">
+
+         <wsdl:input message="impl:validar_cedulaRequest" name="validar_cedulaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:validar_cedulaResponse" name="validar_cedulaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrousuario">
+
+         <wsdl:input message="impl:registrousuarioRequest" name="registrousuarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registrousuarioResponse" name="registrousuarioResponse">
 
        </wsdl:output>
 
@@ -69,6 +288,96 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="loginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="usuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="usuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="usuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="id_tipo_usuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="id_tipo_usuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="id_tipo_usuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="id_departamento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="id_departamentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="id_departamentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validar_cedula">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validar_cedulaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validar_cedulaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrousuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrousuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrousuarioResponse">
 
             <wsdlsoap:body use="literal"/>
 

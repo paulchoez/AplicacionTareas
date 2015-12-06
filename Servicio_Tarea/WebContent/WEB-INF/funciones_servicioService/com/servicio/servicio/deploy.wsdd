@@ -14,7 +14,31 @@
         <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:usuario" type="tns:string"/>
         <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:contrasena" type="tns:string"/>
       </operation>
-      <parameter name="allowedMethods" value="login"/>
+      <operation xmlns:operNS="http://servicio.servicio.com" xmlns:retNS="http://servicio.servicio.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="usuario" qname="operNS:usuario" returnQName="retNS:usuarioReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:usuario" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://servicio.servicio.com" xmlns:retNS="http://servicio.servicio.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="id_tipo_usuario" qname="operNS:id_tipo_usuario" returnQName="retNS:id_tipo_usuarioReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:usuario" type="tns:string"/>
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:contrasena" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://servicio.servicio.com" xmlns:retNS="http://servicio.servicio.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="id_departamento" qname="operNS:id_departamento" returnQName="retNS:id_departamentoReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:departamento" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://servicio.servicio.com" xmlns:retNS="http://servicio.servicio.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="validar_cedula" qname="operNS:validar_cedula" returnQName="retNS:validar_cedulaReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cedula" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://servicio.servicio.com" xmlns:retNS="http://servicio.servicio.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="registrousuario" qname="operNS:registrousuario" returnQName="retNS:registrousuarioReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nombres" type="tns:string"/>
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id_departamento" type="tns:int"/>
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:apellidos" type="tns:string"/>
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cedula" type="tns:string"/>
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:direccion" type="tns:string"/>
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id_tipousuario" type="tns:int"/>
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:usuarios" type="tns:string"/>
+        <parameter xmlns:pns="http://servicio.servicio.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:contraseña" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="id_departamento registrousuario id_tipo_usuario usuario validar_cedula login"/>
 
   </service>
 </deployment>

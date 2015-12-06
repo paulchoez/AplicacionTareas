@@ -46,6 +46,39 @@ public class DBUsuario {
 		}
 	}
 
+	public int id_tipo_usuario(String usuario, String contrasena){
+		int id = 0;
+		int cont = 0;
+		ResultSet resultado = null;
+		DBManager dbmanager = new DBManager();
+		Connection conexion = dbmanager.getConection();
+		if (conexion == null) {
+			System.out.println("Conexion no se pudo realizar");
+			return id;
+		}
+		Statement state = null;
+		try {
+			state = (Statement) conexion.createStatement();
+			resultado = state.executeQuery("SELECT tu.id_tipousuario FROM datosusuarios du, tiposusuarios tu, usuarios u "
+					+ "where u.estado = 'A' and tu.estado = 'A'and du.estado = 'A' and "
+					+ "u.id_tipousuario = tu.id_tipousuario and du.id_usuario = u.id_usuario and"
+					+ " du.usuario = '"+usuario+"' and du.contraseña = '"+contrasena+"';");
+			while(resultado.next()){
+				cont = cont + 1;
+				id = resultado.getInt(1);
+			}
+			if(cont>0){
+				return id;
+			}else{
+				return 0;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
 	public Integer nuevoUsuario(String nombres, Integer id_departamento, String apellidos, String cedula, String email, String direccion, Integer id_tipousuario, String alias, String dpassword){
 		Integer resultado=0;
 		
@@ -143,5 +176,46 @@ public class DBUsuario {
         }
         return existe;
     }
+	
+	public int validar_cedula(String cedula){
+		int respuesta = 0;
+		DBManager dbmanager = new DBManager();
+        Connection con =dbmanager.getConection();
+        if(con==null){
+            System.out.println("error en conexion");
+            return respuesta;
+        }
+         
+        //sentencia a ejecutar
+        Statement sentencia;
+        //objeto para almacenar resultados
+        ResultSet resultados;
+        String sql = null;
+     
+        sql ="select count(cedula) from personas where cedula= '"+cedula+"' and estado = 'A'"; 
+       
+        try{
+        sentencia =con.createStatement();
+        resultados=sentencia.executeQuery(sql);
+        while(resultados.next()){
+           respuesta = resultados.getInt(1);
+        }
+        
+            
+          }catch (SQLException e){
+             
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+         
+        try{
+        con.close();
+        }catch (SQLException e){
+             
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+		return respuesta;
+	}
 
 }

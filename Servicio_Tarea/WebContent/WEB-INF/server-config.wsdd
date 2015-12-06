@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -20,22 +20,8 @@
   </ns1:requestFlow>
  </ns1:globalConfiguration>
  <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
- <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
- <ns1:service name="funciones_servicio" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="login" qname="ns1:login" returnQName="ns1:loginReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://servicio.servicio.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
-   <ns2:parameter qname="ns1:usuario" type="xsd:string"/>
-   <ns2:parameter qname="ns1:contrasena" type="xsd:string"/>
-  </ns2:operation>
-  <ns1:parameter name="allowedMethods" value="login"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="wsdlPortType" value="funciones_servicio"/>
-  <ns1:parameter name="className" value="com.servicio.servicio.funciones_servicio"/>
-  <ns1:parameter name="wsdlServicePort" value="funciones_servicio"/>
-  <ns1:parameter name="schemaQualified" value="http://servicio.servicio.com"/>
-  <ns1:parameter name="wsdlTargetNamespace" value="http://servicio.servicio.com"/>
-  <ns1:parameter name="wsdlServiceElement" value="funciones_servicioService"/>
- </ns1:service>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
  <ns1:service name="AdminService" provider="java:MSG">
   <ns1:parameter name="allowedMethods" value="AdminService"/>
   <ns1:parameter name="enableRemoteAdmin" value="false"/>
@@ -45,6 +31,44 @@
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="funciones_servicio" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="login" qname="ns1:login" returnQName="ns1:loginReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://servicio.servicio.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:usuario" type="xsd:string"/>
+   <ns2:parameter qname="ns1:contrasena" type="xsd:string"/>
+  </ns2:operation>
+  <ns1:operation name="usuario" qname="ns2:usuario" returnQName="ns2:usuarioReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://servicio.servicio.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:usuario" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="id_tipo_usuario" qname="ns3:id_tipo_usuario" returnQName="ns3:id_tipo_usuarioReturn" returnType="xsd:int" soapAction="" xmlns:ns3="http://servicio.servicio.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:usuario" type="xsd:string"/>
+   <ns1:parameter qname="ns3:contrasena" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="id_departamento" qname="ns4:id_departamento" returnQName="ns4:id_departamentoReturn" returnType="xsd:int" soapAction="" xmlns:ns4="http://servicio.servicio.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:departamento" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="validar_cedula" qname="ns5:validar_cedula" returnQName="ns5:validar_cedulaReturn" returnType="xsd:int" soapAction="" xmlns:ns5="http://servicio.servicio.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:cedula" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="registrousuario" qname="ns6:registrousuario" returnQName="ns6:registrousuarioReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://servicio.servicio.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:nombres" type="xsd:string"/>
+   <ns1:parameter qname="ns6:id_departamento" type="xsd:int"/>
+   <ns1:parameter qname="ns6:apellidos" type="xsd:string"/>
+   <ns1:parameter qname="ns6:cedula" type="xsd:string"/>
+   <ns1:parameter qname="ns6:email" type="xsd:string"/>
+   <ns1:parameter qname="ns6:direccion" type="xsd:string"/>
+   <ns1:parameter qname="ns6:id_tipousuario" type="xsd:int"/>
+   <ns1:parameter qname="ns6:usuarios" type="xsd:string"/>
+   <ns1:parameter qname="ns6:contrase&#xF1;a" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="id_departamento registrousuario id_tipo_usuario usuario validar_cedula login"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="funciones_servicio"/>
+  <ns1:parameter name="className" value="com.servicio.servicio.funciones_servicio"/>
+  <ns1:parameter name="wsdlServicePort" value="funciones_servicio"/>
+  <ns1:parameter name="schemaQualified" value="http://servicio.servicio.com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://servicio.servicio.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="funciones_servicioService"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>
